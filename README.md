@@ -8,12 +8,16 @@ git clone https://github.com/gkcity/esp-idf.git
 https://docs.espressif.com/projects/esp-idf/en/stable/get-started/
 
 ## 如何编译？
+```bash
 mkdir build
 cd build
 make
+```
 
 ## 如何烧写？ 
+```bash
 make falsh
+```
 
 ## 如何调试？
 1. 打开串口，观察LOG。
