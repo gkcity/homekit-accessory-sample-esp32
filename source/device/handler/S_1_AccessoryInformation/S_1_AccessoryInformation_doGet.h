@@ -2,7 +2,7 @@
 * Copyright (C) 2013-2015
 *
 * @author jxfengzi@gmail.com
-* @date   2013-11-19
+* @date   2018-11-12
 *
 * @file   S_1_AccessoryInformation_doGet.h
 *

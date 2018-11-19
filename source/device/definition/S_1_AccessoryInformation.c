@@ -2,7 +2,7 @@
  * Copyright (C) 2013-2015
  *
  * @author jxfengzi@gmail.com
- * @date   2013-11-19
+ * @date   2018-11-12
  *
  * @file   S_1_AccessoryInformation.c
  *
@@ -11,14 +11,12 @@
  */
 
 #include "S_1_AccessoryInformation.h"
-#include "P_1_1_Identify.h"
-#include "P_1_2_Manufacturer.h"
-#include "P_1_3_Model.h"
-#include "P_1_4_Name.h"
-#include "P_1_5_SerialNumber.h"
-#include "P_1_6_FirmwareRevision.h"
-#include "P_1_7_HardwareRevision.h"
-#include "P_1_8_AccessoryFlags.h"
+#include "P_1_2_Identify.h"
+#include "P_1_3_Manufacturer.h"
+#include "P_1_4_Model.h"
+#include "P_1_5_Name.h"
+#include "P_1_6_SerialNumber.h"
+#include "P_1_7_FirmwareRevision.h"
 
 Service * S_1_AccessoryInformation(void)
 {
@@ -32,56 +30,42 @@ Service * S_1_AccessoryInformation(void)
             break;
         }
 
-        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_1_Identify())))
+        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_2_Identify())))
         {
             Service_Delete(thiz);
             thiz = NULL;
             break;
         }
 
-        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_2_Manufacturer())))
+        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_3_Manufacturer())))
         {
             Service_Delete(thiz);
             thiz = NULL;
             break;
         }
 
-        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_3_Model())))
+        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_4_Model())))
         {
             Service_Delete(thiz);
             thiz = NULL;
             break;
         }
 
-        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_4_Name())))
+        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_5_Name())))
         {
             Service_Delete(thiz);
             thiz = NULL;
             break;
         }
 
-        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_5_SerialNumber())))
+        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_6_SerialNumber())))
         {
             Service_Delete(thiz);
             thiz = NULL;
             break;
         }
 
-        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_6_FirmwareRevision())))
-        {
-            Service_Delete(thiz);
-            thiz = NULL;
-            break;
-        }
-
-        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_7_HardwareRevision())))
-        {
-            Service_Delete(thiz);
-            thiz = NULL;
-            break;
-        }
-
-        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_8_AccessoryFlags())))
+        if (RET_FAILED(TinyList_AddTail(&thiz->properties, P_1_7_FirmwareRevision())))
         {
             Service_Delete(thiz);
             thiz = NULL;
