@@ -29,7 +29,7 @@ static const char *TAG = "simple wifi";
 
 #define DID                 "1C:BE:EE:01:01:08"
 #define NAME                "Lightbulb"
-#define PIN                 "031-45-154"
+#define SETUP_CODE          "031-45-154"
 
 static void runIotStack(void *param)
 {
@@ -40,7 +40,7 @@ static void runIotStack(void *param)
     /**
      * 1. 初始化设备
      */
-    device = Lightbulb(DID, NAME, ip, PIN);
+    device = Lightbulb(DID, NAME, ip, SETUP_CODE);
     if (device == NULL)
     {
         return;

@@ -18,7 +18,7 @@
 TINY_BEGIN_DECLS
 
 
-void InitializeConfiguration(DeviceConfig *thiz, const char *did, const char *name, const char *ip, const char *pin);
+void InitializeConfiguration(DeviceConfig *thiz, const char *did, const char *name, const char *ip, const char *setupCode);
 
 
 TINY_END_DECLS

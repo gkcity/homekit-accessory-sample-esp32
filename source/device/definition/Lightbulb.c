@@ -18,13 +18,13 @@
 #include "S_1_AccessoryInformation.h"
 #include "S_8_Lightbulb.h"
 
-Device * Lightbulb(const char *did, const char *name, const char *ip, const char *pin)
+Device * Lightbulb(const char *did, const char *name, const char *ip, const char *setupCode)
 {
     Device *thiz = NULL;
 
     do
     {
-        if (did == NULL || name == NULL)
+        if (did == NULL || name == NULL || ip == NULL || setupCode == NULL)
         {
             break;
         }
@@ -53,7 +53,7 @@ Device * Lightbulb(const char *did, const char *name, const char *ip, const char
             break;
         }
 
-        InitializeConfiguration(&thiz->config, did, name, ip, pin);
+        InitializeConfiguration(&thiz->config, did, name, ip, setupCode);
     } while (false);
 
     return thiz;

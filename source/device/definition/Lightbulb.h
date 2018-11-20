@@ -18,7 +18,7 @@
 TINY_BEGIN_DECLS
 
 
-Device * Lightbulb(const char *did, const char *name, const char *ip, const char *pin);
+Device * Lightbulb(const char *did, const char *name, const char *ip, const char *setupCode);
 
 
 TINY_END_DECLS

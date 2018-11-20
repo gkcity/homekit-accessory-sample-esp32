@@ -4,29 +4,31 @@
 * @author jxfengzi@gmail.com
 * @date   2013-11-19
 *
-* @file   __InitializeConfiguration_H__.c
+* @file   InitializeConfiguration.c
 *
 * @remark
 *
 */
 
 #include "InitializeConfiguration.h"
-#include "AccessoryCategoryIdentifier.h"
+#include <device/config/AccessoryCategoryIdentifier.h>
 
 #define PRODUCT_ID          10006
 #define PRODUCT_VERSION     1
 #define LTSK                "+NC/fa+QFz6hHtcOUKUJK9EQEl/J1nKhh2ixj9hQtGU="
 #define LTPK                "V6q8ABMPIOpEyJK/EsdpmsQFtX2+CbpaPMlYOjWNHLE="
-#define ACCESSORY_MODEL     "light"
+#define MODEL               "light"
+#define SETUP_ID            "7OSX"
 
-static void InitializeAccessoryConfiguration(AccessoryConfig *thiz, const char *name, const char *pin)
+static void InitializeAccessoryConfiguration(AccessoryConfig *thiz, const char *name, const char *setupCode)
 {
     thiz->aid = 1;
-    strncpy(thiz->name, name, DEVICE_NAME_LENGTH);
-    strncpy(thiz->pin, pin, DEVICE_PIN_LENGTH);
-    strncpy(thiz->model, ACCESSORY_MODEL, DEVICE_MODEL_LENGTH);
+    strncpy(thiz->name, name, ACCESSORY_NAME_LENGTH);
+    strncpy(thiz->model, MODEL, ACCESSORY_MODEL_LENGTH);
+    strncpy(thiz->setupCode, setupCode,ACCESSORY_SETUP_CODE_LENGTH);
+    strncpy(thiz->setupId, SETUP_ID, ACCESSORY_SETUP_ID_LENGTH);
     thiz->configurationNumber = 2;
-    thiz->categoryIdentifier = ACCESSORY_CATEGORY_OTHER;
+    thiz->categoryIdentifier = ACCESSORY_CATEGORY_LIGHTING;
     thiz->featureFlags = 0;
     thiz->stateNumber = 1;
     thiz->statusFlags = 0x01;
@@ -34,7 +36,7 @@ static void InitializeAccessoryConfiguration(AccessoryConfig *thiz, const char *
     thiz->protocolMinorVersion = 0;
 }
 
-void InitializeConfiguration(DeviceConfig *thiz, const char *did, const char *name, const char *ip, const char *pin)
+void InitializeConfiguration(DeviceConfig *thiz, const char *did, const char *name, const char *ip, const char *setupCode)
 {
     strncpy(thiz->did, did, DEVICE_ID_LENGTH);
     strncpy(thiz->ip, ip, TINY_IP_LEN);
@@ -43,5 +45,5 @@ void InitializeConfiguration(DeviceConfig *thiz, const char *did, const char *na
     thiz->productId = PRODUCT_ID;
     thiz->productVersion = PRODUCT_VERSION;
     thiz->port = 0;
-    InitializeAccessoryConfiguration(&thiz->accessoryConfig, name, pin);
+    InitializeAccessoryConfiguration(&thiz->accessoryConfig, name, setupCode);
 }
