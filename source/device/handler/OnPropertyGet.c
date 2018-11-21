@@ -10,7 +10,6 @@
 *
 */
 
-#include <status/HapStatus.h>
 #include "OnPropertyGet.h"
 #include "../iid/IID.h"
 #include "S_1_AccessoryInformation/S_1_AccessoryInformation_doGet.h"
@@ -31,7 +30,6 @@ void OnPropertyGet(PropertyOperation *o)
             break;
 
         default:
-            o->status = HAP_RESOURCE_NOT_EXIST;
             break;
     }
 }

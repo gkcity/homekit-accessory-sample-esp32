@@ -38,7 +38,6 @@ Device * Lightbulb(const char *did, const char *name, const char *ip, const char
         thiz->onGet = OnPropertyGet;
         thiz->onSet = OnPropertySet;
 
-
         if (RET_FAILED(TinyList_AddTail(&thiz->services, S_1_AccessoryInformation())))
         {
             Device_Delete(thiz);

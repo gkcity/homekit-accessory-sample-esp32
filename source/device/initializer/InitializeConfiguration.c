@@ -33,7 +33,7 @@ static void InitializeAccessoryConfiguration(AccessoryConfig *thiz, const char *
     thiz->stateNumber = 1;
     thiz->statusFlags = 0x01;
     thiz->protocolMajorVersion = 1;
-    thiz->protocolMinorVersion = 0;
+    thiz->protocolMinorVersion = 1;
 }
 
 void InitializeConfiguration(DeviceConfig *thiz, const char *did, const char *name, const char *ip, const char *setupCode)
