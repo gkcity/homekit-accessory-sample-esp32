@@ -37,8 +37,12 @@ esptool
 ```
 
 ## Setup Code 是什么？
-{SetupCode}
+```
+031-45-154
+```
 
 ## 板子启动后，将自动连接到路由器
+```
 ssid: gkct
 pasword: hellogkct
+```
