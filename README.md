@@ -22,3 +22,10 @@ make falsh
 ## 如何调试？
 1. 打开串口，观察LOG。
 2. 使用iOS里的家庭app绑定并测试此设备。
+
+## Setup Code
+031-45-154
+
+## 板子启动后，将自动连接到路由器
+ssid: gkct
+pasword: hellogkct

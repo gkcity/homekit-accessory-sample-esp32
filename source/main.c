@@ -14,8 +14,8 @@
 #include "device/definition/Lightbulb.h"
 #include "HomeKitStack.h"
 
-#define EXAMPLE_ESP_WIFI_SSID      "airport-milink"
-#define EXAMPLE_ESP_WIFI_PASS      "milink123"
+#define EXAMPLE_ESP_WIFI_SSID      "gkct"
+#define EXAMPLE_ESP_WIFI_PASS      "hellogkct"
 
 /* FreeRTOS event group to signal when we are connected*/
 static EventGroupHandle_t wifi_event_group;
