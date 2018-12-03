@@ -1,5 +1,7 @@
 # Accessory sample (lightbulb) on esp32
 
+项目源代码由 tinyhap.com 生成
+
 ## 配置编译环境
 1. 下载包含homekit的esp-idf分支:
 git clone https://github.com/gkcity/esp-idf.git
