@@ -3,7 +3,7 @@
 本项目源代码由 http://tinyhap.com 生成
 
 ## 配置编译环境
-1. 下载esp-idf分支:
+1. 下载esp-idf:
 ```
 https://github.com/espressif/esp-idf.git
 ```
