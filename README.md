@@ -13,6 +13,7 @@ https://docs.espressif.com/projects/esp-idf/en/stable/get-started/
 
 ## 如何编译？
 ```bash
+git submodule update --init
 mkdir build
 cd build
 make
