@@ -151,6 +151,9 @@ void wifi_init_sta()
 
 void app_main()
 {
+    printf("app started, free heap size: %d\n", esp_get_free_heap_size());
+    printf("SDK version:%s\n", esp_get_idf_version());
+
     //Initialize NVS
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {

@@ -3,8 +3,10 @@
 本项目源代码由 http://tinyhap.com 生成
 
 ## 配置编译环境
-1. 下载包含homekit的esp-idf分支:
-git clone https://github.com/gkcity/esp-idf.git
+1. 下载esp-idf分支:
+```
+https://github.com/espressif/esp-idf.git
+```
 
 2. esp-idf编译环境的配置,请参考官方文档
 https://docs.espressif.com/projects/esp-idf/en/stable/get-started/
