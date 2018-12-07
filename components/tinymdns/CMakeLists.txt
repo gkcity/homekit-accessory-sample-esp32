@@ -1,7 +1,7 @@
 set(SOURCE_ROOT tinymdns/source/src)
 set(SOURCE_INC ${SOURCE_ROOT}/dns-common
-               ${SOURCE_ROOT}/dns-server-captive-portal
-               ${SOURCE_ROOT}/multicast-dns)
+               ${SOURCE_ROOT}/dns-server
+               ${SOURCE_ROOT}/mdns)
 
 SET(Mdns_Header
         ${SOURCE_ROOT}/dns-common/api/mdns_api.h
@@ -11,15 +11,15 @@ SET(Mdns_Header
         ${SOURCE_ROOT}/dns-common/message/DnsQuestion.h
         ${SOURCE_ROOT}/dns-common/message/DnsRecord.h
         ${SOURCE_ROOT}/dns-common/message/DnsMessage.h
-        ${SOURCE_ROOT}/multicast-dns/MdnsConstant.h
-        ${SOURCE_ROOT}/multicast-dns/ServiceInfo.h
-        ${SOURCE_ROOT}/multicast-dns/MdnsHandler.h
-        ${SOURCE_ROOT}/multicast-dns/MdnsHandlerContext.h
-        ${SOURCE_ROOT}/multicast-dns/ServiceObserver.h
-        ${SOURCE_ROOT}/multicast-dns/ServiceListener.h
-        ${SOURCE_ROOT}/dns-server-captive-portal/DnsConstant.h
-        ${SOURCE_ROOT}/dns-server-captive-portal/DnsServerHandler.h
-        ${SOURCE_ROOT}/dns-server-captive-portal/DnsServerHandlerContext.h
+        ${SOURCE_ROOT}/dns-common/message/ServiceInfo.h
+        ${SOURCE_ROOT}/dns-server/DnsConstant.h
+        ${SOURCE_ROOT}/dns-server/DnsServerHandler.h
+        ${SOURCE_ROOT}/dns-server/DnsServerHandlerContext.h
+        ${SOURCE_ROOT}/mdns/MdnsConstant.h
+        ${SOURCE_ROOT}/mdns/MdnsHandler.h
+        ${SOURCE_ROOT}/mdns/MdnsHandlerContext.h
+        ${SOURCE_ROOT}/mdns/ServiceObserver.h
+        ${SOURCE_ROOT}/mdns/ServiceListener.h
         )
 
 SET(Mdns_Source
@@ -29,12 +29,12 @@ SET(Mdns_Source
         ${SOURCE_ROOT}/dns-common/message/DnsQuestion.c
         ${SOURCE_ROOT}/dns-common/message/DnsRecord.c
         ${SOURCE_ROOT}/dns-common/message/DnsMessage.c
-        ${SOURCE_ROOT}/multicast-dns/ServiceInfo.c
-        ${SOURCE_ROOT}/multicast-dns/MdnsHandler.c
-        ${SOURCE_ROOT}/multicast-dns/MdnsHandlerContext.c
-        ${SOURCE_ROOT}/multicast-dns/ServiceObserver.c
-        ${SOURCE_ROOT}/dns-server-captive-portal/DnsServerHandler.c
-        ${SOURCE_ROOT}/dns-server-captive-portal/DnsServerHandlerContext.c
+        ${SOURCE_ROOT}/dns-common/message/ServiceInfo.c
+        ${SOURCE_ROOT}/dns-server/DnsServerHandler.c
+        ${SOURCE_ROOT}/dns-server/DnsServerHandlerContext.c
+        ${SOURCE_ROOT}/mdns/MdnsHandler.c
+        ${SOURCE_ROOT}/mdns/MdnsHandlerContext.c
+        ${SOURCE_ROOT}/mdns/ServiceObserver.c
         )
 
 set(COMPONENT_ADD_INCLUDEDIRS ${SOURCE_INC})
