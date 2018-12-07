@@ -1,33 +1,40 @@
 set(SOURCE_ROOT tinymdns/source/src)
-set(SOURCE_INC ${SOURCE_ROOT}/TinyMDNS)
+set(SOURCE_INC ${SOURCE_ROOT}/dns-common
+               ${SOURCE_ROOT}/dns-server-captive-portal
+               ${SOURCE_ROOT}/multicast-dns)
 
 SET(Mdns_Header
-        ${SOURCE_ROOT}/TinyMDNS/mdns_api.h
-        ${SOURCE_ROOT}/TinyMDNS/MdnsConstant.h
-        ${SOURCE_ROOT}/TinyMDNS/ServiceInfo.h
-        ${SOURCE_ROOT}/TinyMDNS/MdnsHandler.h
-        ${SOURCE_ROOT}/TinyMDNS/MdnsHandlerContext.h
-        ${SOURCE_ROOT}/TinyMDNS/ServiceObserver.h
-        ${SOURCE_ROOT}/TinyMDNS/ServiceListener.h
-        ${SOURCE_ROOT}/TinyMDNS/codec/DnsMessageCodec.h
-        ${SOURCE_ROOT}/TinyMDNS/message/DnsTypedef.h
-        ${SOURCE_ROOT}/TinyMDNS/message/DnsName.h
-        ${SOURCE_ROOT}/TinyMDNS/message/DnsQuestion.h
-        ${SOURCE_ROOT}/TinyMDNS/message/DnsRecord.h
-        ${SOURCE_ROOT}/TinyMDNS/message/DnsMessage.h
+        ${SOURCE_ROOT}/dns-common/api/mdns_api.h
+        ${SOURCE_ROOT}/dns-common/codec/DnsMessageCodec.h
+        ${SOURCE_ROOT}/dns-common/message/DnsTypedef.h
+        ${SOURCE_ROOT}/dns-common/message/DnsName.h
+        ${SOURCE_ROOT}/dns-common/message/DnsQuestion.h
+        ${SOURCE_ROOT}/dns-common/message/DnsRecord.h
+        ${SOURCE_ROOT}/dns-common/message/DnsMessage.h
+        ${SOURCE_ROOT}/multicast-dns/MdnsConstant.h
+        ${SOURCE_ROOT}/multicast-dns/ServiceInfo.h
+        ${SOURCE_ROOT}/multicast-dns/MdnsHandler.h
+        ${SOURCE_ROOT}/multicast-dns/MdnsHandlerContext.h
+        ${SOURCE_ROOT}/multicast-dns/ServiceObserver.h
+        ${SOURCE_ROOT}/multicast-dns/ServiceListener.h
+        ${SOURCE_ROOT}/dns-server-captive-portal/DnsConstant.h
+        ${SOURCE_ROOT}/dns-server-captive-portal/DnsServerHandler.h
+        ${SOURCE_ROOT}/dns-server-captive-portal/DnsServerHandlerContext.h
         )
 
 SET(Mdns_Source
-        ${SOURCE_ROOT}/TinyMDNS/ServiceInfo.c
-        ${SOURCE_ROOT}/TinyMDNS/MdnsHandler.c
-        ${SOURCE_ROOT}/TinyMDNS/MdnsHandlerContext.c
-        ${SOURCE_ROOT}/TinyMDNS/ServiceObserver.c
-        ${SOURCE_ROOT}/TinyMDNS/codec/DnsMessageCodec.c
-        ${SOURCE_ROOT}/TinyMDNS/message/DnsTypedef.c
-        ${SOURCE_ROOT}/TinyMDNS/message/DnsName.c
-        ${SOURCE_ROOT}/TinyMDNS/message/DnsQuestion.c
-        ${SOURCE_ROOT}/TinyMDNS/message/DnsRecord.c
-        ${SOURCE_ROOT}/TinyMDNS/message/DnsMessage.c
+        ${SOURCE_ROOT}/dns-common/codec/DnsMessageCodec.c
+        ${SOURCE_ROOT}/dns-common/message/DnsTypedef.c
+        ${SOURCE_ROOT}/dns-common/message/DnsName.c
+        ${SOURCE_ROOT}/dns-common/message/DnsQuestion.c
+        ${SOURCE_ROOT}/dns-common/message/DnsRecord.c
+        ${SOURCE_ROOT}/dns-common/message/DnsMessage.c
+        ${SOURCE_ROOT}/multicast-dns/ServiceInfo.c
+        ${SOURCE_ROOT}/multicast-dns/MdnsHandler.c
+        ${SOURCE_ROOT}/multicast-dns/MdnsHandlerContext.c
+        ${SOURCE_ROOT}/multicast-dns/ServiceObserver.c
+        ${SOURCE_ROOT}/dns-server-captive-portal/DnsServerHandler.c
+        ${SOURCE_ROOT}/dns-server-captive-portal/DnsServerHandlerContext.c
         )
 
 set(COMPONENT_ADD_INCLUDEDIRS ${SOURCE_INC})
