@@ -151,6 +151,8 @@ SET(Netty_Header
         ${SOURCE_ROOT}/Netty/channel/stream/StreamServerChannelContext.h
         ${SOURCE_ROOT}/Netty/channel/multicast/MulticastChannel.h
         ${SOURCE_ROOT}/Netty/channel/multicast/MulticastChannelContext.h
+        ${SOURCE_ROOT}/Netty/channel/unicast/UnicastChannel.h
+        ${SOURCE_ROOT}/Netty/channel/unicast/UnicastChannelContext.h
         ${SOURCE_ROOT}/Netty/codec-http/HttpMessageCodec.h
         ${SOURCE_ROOT}/Netty/codec-http/HttpMessageEncoder.h
         ${SOURCE_ROOT}/Netty/codec-http/HttpMessage.h
@@ -180,6 +182,8 @@ SET(Netty_Source
         ${SOURCE_ROOT}/Netty/channel/stream/StreamServerChannelContext.c
         ${SOURCE_ROOT}/Netty/channel/multicast/MulticastChannel.c
         ${SOURCE_ROOT}/Netty/channel/multicast/MulticastChannelContext.c
+        ${SOURCE_ROOT}/Netty/channel/unicast/UnicastChannel.c
+        ${SOURCE_ROOT}/Netty/channel/unicast/UnicastChannelContext.c
         ${SOURCE_ROOT}/Netty/codec-http/HttpMessageCodec.c
         ${SOURCE_ROOT}/Netty/codec-http/HttpMessageEncoder.c
         ${SOURCE_ROOT}/Netty/codec-http/HttpContent.c
