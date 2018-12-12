@@ -43,7 +43,7 @@ SET(DEVICE_SRC
         source/device/print/PrintValue.c
         )
 
-set(MAIN_SRCS 
+set(MAIN_SRCS
         ${DEVICE_SRC}
         source/persistence/HapPersistenceImpl.h
         source/persistence/HapPersistenceImpl.c

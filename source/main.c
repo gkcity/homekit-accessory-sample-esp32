@@ -13,9 +13,11 @@
 
 #include "device/definition/Lightbulb.h"
 #include "HomeKitStack.h"
+#include "CaptivePortal.h"
 
 #define EXAMPLE_ESP_WIFI_SSID      "gkct"
 #define EXAMPLE_ESP_WIFI_PASS      "hellogkct"
+#define EXAMPLE_MAX_STA_CONN       10
 
 /* FreeRTOS event group to signal when we are connected*/
 static EventGroupHandle_t wifi_event_group;
@@ -91,6 +93,41 @@ void startIoTStack(const char *ip)
     xTaskCreate(runIotStack, "iot", 1024 * 6, (void *)ip, 5, NULL);
 }
 
+static void runCaptivePortal(void *param)
+{
+    tcpip_adapter_ip_info_t info;
+    if (tcpip_adapter_get_ip_info(TCPIP_ADAPTER_IF_AP, &info) != ESP_OK)
+    {
+        ESP_LOGI(TAG, "tcpip_adapter_get_ip_info failed");
+        return;
+    }
+
+    CaptivePortal * cp = CaptivePortal_New(NULL, NULL);
+    if (cp == NULL)
+    {
+        ESP_LOGI(TAG, "CaptivePortal_New failed");
+        return;
+    }
+
+    char s[32];
+    uint8_t *a = (uint8_t *) &info.ip.addr;
+    snprintf(s, 32, "%d.%d.%d.%d", a[0], a[1], a[2], a[3]);
+    printf("runCaptivePortal ip: %s\n", s);
+
+    CaptivePortal_Run(cp, info.ip.addr);
+}
+
+void startCaptivePortal(void)
+{
+    ESP_LOGI(TAG, "startCaptivePortal");
+    xTaskCreate(runCaptivePortal, "cp", 1024 * 6, NULL, 5, NULL);
+}
+
+void stopCaptivePortal(void)
+{
+    ESP_LOGI(TAG, "stopCaptivePortal");
+}
+
 static esp_err_t event_handler(void *ctx, system_event_t *event)
 {
     switch(event->event_id) {
@@ -104,6 +141,11 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
             startIoTStack(ip4addr_ntoa(&event->event_info.got_ip.ip_info.ip));
             break;
 
+        case SYSTEM_EVENT_STA_DISCONNECTED:
+            esp_wifi_connect();
+            xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
+            break;
+
         case SYSTEM_EVENT_AP_STACONNECTED:
             ESP_LOGI(TAG, "station:"MACSTR" join, AID=%d",
                      MAC2STR(event->event_info.sta_connected.mac), event->event_info.sta_connected.aid);
@@ -114,14 +156,48 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
                      MAC2STR(event->event_info.sta_disconnected.mac), event->event_info.sta_disconnected.aid);
             break;
 
-        case SYSTEM_EVENT_STA_DISCONNECTED:
-            esp_wifi_connect();
-            xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
+        case SYSTEM_EVENT_AP_START:
+            startCaptivePortal();
             break;
+
+        case SYSTEM_EVENT_AP_STOP:
+            stopCaptivePortal();
+            break;
+
         default:
             break;
     }
+
     return ESP_OK;
+}
+
+void wifi_init_softap()
+{
+    wifi_event_group = xEventGroupCreate();
+
+    tcpip_adapter_init();
+    ESP_ERROR_CHECK(esp_event_loop_init(event_handler, NULL));
+
+    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+    ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+    wifi_config_t wifi_config = {
+            .ap = {
+                    .ssid = EXAMPLE_ESP_WIFI_SSID,
+                    .ssid_len = strlen(EXAMPLE_ESP_WIFI_SSID),
+//                    .password = "",
+                    .max_connection = EXAMPLE_MAX_STA_CONN,
+                    .authmode = WIFI_AUTH_OPEN
+            },
+    };
+    if (strlen(EXAMPLE_ESP_WIFI_PASS) == 0) {
+        wifi_config.ap.authmode = WIFI_AUTH_OPEN;
+    }
+
+    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_AP));
+    ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_AP, &wifi_config));
+    ESP_ERROR_CHECK(esp_wifi_start());
+
+    ESP_LOGI(TAG, "wifi_init_softap finished, SSID: %s", EXAMPLE_ESP_WIFI_SSID);
 }
 
 void wifi_init_sta()
@@ -145,8 +221,7 @@ void wifi_init_sta()
     ESP_ERROR_CHECK(esp_wifi_start() );
 
     ESP_LOGI(TAG, "wifi_init_sta finished.");
-    ESP_LOGI(TAG, "connect to ap SSID:%s password:%s",
-             EXAMPLE_ESP_WIFI_SSID, EXAMPLE_ESP_WIFI_PASS);
+    ESP_LOGI(TAG, "connect to ap SSID:%s password:%s", EXAMPLE_ESP_WIFI_SSID, EXAMPLE_ESP_WIFI_PASS);
 }
 
 void app_main()
@@ -162,6 +237,11 @@ void app_main()
     }
     ESP_ERROR_CHECK(ret);
 
+#if 0
+    ESP_LOGI(TAG, "ESP_WIFI_MODE_AP");
+    wifi_init_softap();
+#else
     ESP_LOGI(TAG, "ESP_WIFI_MODE_STA");
     wifi_init_sta();
+#endif
 }

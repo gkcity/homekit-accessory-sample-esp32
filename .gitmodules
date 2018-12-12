@@ -14,3 +14,7 @@
 	path = components/tinycrypto/tinycrypto
 	url = https://github.com/gkcity/tinycrypto.git
 	branch = master
+[submodule "components/web-captive-portal/web-captive-portal"]
+	path = components/web-captive-portal/web-captive-portal
+	url = https://github.com/gkcity/web-captive-portal.git
+	branch = master
