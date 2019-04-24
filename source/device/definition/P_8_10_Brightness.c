@@ -29,14 +29,14 @@ static TinyRet P_8_10_Brightness_SetValueRange(Property *thiz)
         }
 
         max = JsonValue_NewInteger(100);
-        if (min == NULL)
+        if (max == NULL)
         {
             ret = TINY_RET_E_NEW;
             break;
         }
 
         step = JsonValue_NewInteger(1);
-        if (min == NULL)
+        if (step == NULL)
         {
             ret = TINY_RET_E_NEW;
             break;
@@ -81,7 +81,7 @@ Property * P_8_10_Brightness(void)
         }
 
         thiz->access = ACCESS_READ | ACCESS_WRITE | ACCESS_NOTIFY;
-        thiz->format = FORMAT_INT32;
+        thiz->format = FORMAT_INT;
 
         if (RET_FAILED(P_8_10_Brightness_SetValueRange(thiz)))
         {
